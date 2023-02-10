@@ -16,12 +16,9 @@ def index(request):
     context_dict['boldmessage'] = 'Crunchy, creamy, cookie, candy, cupcake!'
     context_dict['categories'] = category_list
     context_dict['pages'] = page_list
-    context_dict['views'] = int(request.COOKIES.get('visits', 1))
-
+    visitor_cookie_handler(request)
+    context_dict['visits'] = request.session['visits']
     response = render(request, 'rango/index.html', context=context_dict)
-    # Call the helper function to handle the cookies
-    visitor_cookie_handler(request, response)
-    # Return response back to the user, updating any cookies that need changed.
     return response
 
 
