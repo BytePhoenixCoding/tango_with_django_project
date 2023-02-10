@@ -84,6 +84,7 @@ def add_page(request, category_name_slug):
     if request.method == 'POST':
         form = PageForm(request.POST)
 
+        print("post: " + str(request.POST.items()))
         if form.is_valid():
             if category:
                 page = form.save(commit=False)
